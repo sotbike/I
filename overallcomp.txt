@@ -7,6 +7,8 @@ overallcomp <-overallcomp[c(1:22),]
 
 ############# FIXED EFFECTS MODEL ###########
 
+#  Pooled Analysis
+
 peto_fe<-metabin(evexp,nexp,evctrl,nctrl,sm="OR",method = "peto",data = overallcomp,studlab=study,comb.random = FALSE)
 forest_peto_fe<-forest(peto_fe, xlim = c(0.05,20))
 
@@ -22,18 +24,16 @@ radial(peto_fe)
 abline(reg_peto_fe)
 
 
+# Subgroup Analysis
 
 # subgroup matching
 peto_fe_match<-metabin(evexp,nexp,evctrl,nctrl,sm="OR",method = "peto",data = overallcomp,studlab=study,comb.random = FALSE, byvar = matching, print.byvar = FALSE)
 forest_peto_fe_match<-forest(peto_fe_match, xlim = c(0.05,20),test.subgroup = FALSE)
 
 
-
 # subgroup center
 peto_fe_center<-metabin(evexp,nexp,evctrl,nctrl,sm="OR",method = "peto",data = overallcomp,studlab=study,comb.random = FALSE, byvar = center, print.byvar = FALSE)
 forest_peto_fe_center<-forest(peto_fe_center, xlim = c(0.05,20),test.subgroup = FALSE)
-
-
 
 
 # subgroup post2015
@@ -42,6 +42,8 @@ forest_peto_fe_post2015<-forest(peto_fe_post2015, xlim = c(0.05,20),test.subgrou
 
 
 ############# RANDOM EFFECTS MODEL ###########
+
+# Pooled Analysis
 
 peto_re<-metabin(evexp,nexp,evctrl,nctrl,sm="OR",method = "peto",data = overallcomp,studlab=study,comb.fixed = FALSE)
 forest_peto_re<-forest(peto_re, xlim = c(0.05,20))
@@ -58,19 +60,16 @@ radial(peto_re)
 abline(reg_peto_re)
 
 
-
+# Subgroup Analysis
 
 # subgroup matching
 peto_re_match<-metabin(evexp,nexp,evctrl,nctrl,sm="OR",method = "peto",data = overallcomp,studlab=study,comb.fixed = FALSE, byvar = matching, print.byvar = FALSE)
 forest_peto_re_match<-forest(peto_re_match, xlim = c(0.05,20),test.subgroup = FALSE)
 
 
-
-
 # subgroup center
 peto_re_center<-metabin(evexp,nexp,evctrl,nctrl,sm="OR",method = "peto",data = overallcomp,studlab=study,comb.fixed = FALSE, byvar = center, print.byvar = FALSE)
 forest_peto_re_center<-forest(peto_re_center, xlim = c(0.05,20),test.subgroup = FALSE)
-
 
 
 # subgroup post2015
