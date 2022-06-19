@@ -1,0 +1,80 @@
+library(meta)
+library(metafor)
+library(metasens)
+
+overallcomp <- read.csv("C:/Users/sotbi/Desktop/overallcomp.csv", sep=";", na.strings="")
+overallcomp <-overallcomp[c(1:22),]
+
+############# FIXED EFFECTS MODEL ###########
+
+peto_fe<-metabin(evexp,nexp,evctrl,nctrl,sm="OR",method = "peto",data = overallcomp,studlab=study,comb.random = FALSE)
+forest_peto_fe<-forest(peto_fe, xlim = c(0.05,20))
+
+# Publication Bias
+funnel_peto_fe<-funnel(peto_fe)
+funnel_contour_peto_fe<-funnel(peto_fe, pch = 16,contour = c(0.9,0.95,0.99), col.contour = c("darkgray", "gray", "lightgray"),xlim = c(0.05,20))
+legend(0.042,0.05, c("0.1 > p > 0.05", "0.05 > p > 0.01", "p < 0.01"), fill = c("darkgray", "gray", "lightgray"), bty = "n")
+radial_peto_fe<-radial(peto_fe)
+eggers_peto_fe<-metabias(peto_fe, method.bias = "linreg", plotit = TRUE)
+eggers_peto_fe
+reg_peto_fe<-lm(I(peto_fe$TE/peto_fe$seTE) ~ I(1/peto_fe$seTE))
+radial(peto_fe)
+abline(reg_peto_fe)
+
+
+
+# subgroup matching
+peto_fe_match<-metabin(evexp,nexp,evctrl,nctrl,sm="OR",method = "peto",data = overallcomp,studlab=study,comb.random = FALSE, byvar = matching, print.byvar = FALSE)
+forest_peto_fe_match<-forest(peto_fe_match, xlim = c(0.05,20),test.subgroup = FALSE)
+
+
+
+# subgroup center
+peto_fe_center<-metabin(evexp,nexp,evctrl,nctrl,sm="OR",method = "peto",data = overallcomp,studlab=study,comb.random = FALSE, byvar = center, print.byvar = FALSE)
+forest_peto_fe_center<-forest(peto_fe_center, xlim = c(0.05,20),test.subgroup = FALSE)
+
+
+
+
+# subgroup post2015
+peto_fe_post2015<-metabin(evexp,nexp,evctrl,nctrl,sm="OR",method = "peto",data = overallcomp,studlab=study,comb.random = FALSE, byvar = post2015, print.byvar = FALSE)
+forest_peto_fe_post2015<-forest(peto_fe_post2015, xlim = c(0.05,20),test.subgroup = FALSE)
+
+
+############# RANDOM EFFECTS MODEL ###########
+
+peto_re<-metabin(evexp,nexp,evctrl,nctrl,sm="OR",method = "peto",data = overallcomp,studlab=study,comb.fixed = FALSE)
+forest_peto_re<-forest(peto_re, xlim = c(0.05,20))
+
+# Publication Bias
+funnel_peto_re<-funnel(peto_re)
+funnel_contour_peto_re<-funnel(peto_re, pch = 16,contour = c(0.9,0.95,0.99), col.contour = c("darkgray", "gray", "lightgray"),xlim = c(0.05,20))
+legend(0.042,0.05, c("0.1 > p > 0.05", "0.05 > p > 0.01", "p < 0.01"), fill = c("darkgray", "gray", "lightgray"), bty = "n")
+radial_peto_re<-radial(peto_re)
+eggers_peto_re<-metabias(peto_re, method.bias = "linreg", plotit = TRUE)
+eggers_peto_re
+reg_peto_re<-lm(I(peto_re$TE/peto_re$seTE) ~ I(1/peto_re$seTE))
+radial(peto_re)
+abline(reg_peto_re)
+
+
+
+
+# subgroup matching
+peto_re_match<-metabin(evexp,nexp,evctrl,nctrl,sm="OR",method = "peto",data = overallcomp,studlab=study,comb.fixed = FALSE, byvar = matching, print.byvar = FALSE)
+forest_peto_re_match<-forest(peto_re_match, xlim = c(0.05,20),test.subgroup = FALSE)
+
+
+
+
+# subgroup center
+peto_re_center<-metabin(evexp,nexp,evctrl,nctrl,sm="OR",method = "peto",data = overallcomp,studlab=study,comb.fixed = FALSE, byvar = center, print.byvar = FALSE)
+forest_peto_re_center<-forest(peto_re_center, xlim = c(0.05,20),test.subgroup = FALSE)
+
+
+
+# subgroup post2015
+peto_re_post2015<-metabin(evexp,nexp,evctrl,nctrl,sm="OR",method = "peto",data = overallcomp,studlab=study,comb.fixed = FALSE, byvar = post2015, print.byvar = FALSE)
+forest_peto_re_post2015<-forest(peto_re_post2015, xlim = c(0.05,20),test.subgroup = FALSE)
+
+
