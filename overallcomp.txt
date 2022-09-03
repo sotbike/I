@@ -25,7 +25,6 @@ reg_peto_fe<-lm(I(peto_fe$TE/peto_fe$seTE) ~ I(1/peto_fe$seTE))
 radial(peto_fe)
 abline(reg_peto_fe)
 
-
 # Subgroup Analysis
 
 # subgroup matching
@@ -139,7 +138,6 @@ eggers_peto_re
 reg_peto_re<-lm(I(peto_re$TE/peto_re$seTE) ~ I(1/peto_re$seTE))
 radial(peto_re)
 abline(reg_peto_re)
-
 
 # Subgroup Analysis
 
