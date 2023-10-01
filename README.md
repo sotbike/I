@@ -1,39 +1,17 @@
-Study title: Hypoglycemia rates and glycemic hormonal response after laparoscopic Roux-en-Y gastric bypass versus sleeve gastrectomy. A meta-analysis of comparative studies.
+# Proportion of ischemia in PN (I)
 
-Computational procedure: Variables were divided into primary and secondary, and then analyzed by grouping studies for each outcome.
+Study title: Configuration of a prototype variable corresponding to the proportion of ischemia for the comparison between robotic and open partial nephrectomy. A meta-analysis accompanied by sensitivity analysis.
 
-Outcomes: 
-Primary: 
-1a. Hypoglycemia rates (OGTT, MMTT, CGM, Questionnaires): RR (relative risk)
-1b. Fasting glucose & insulin: MD (mean difference; mg/dl & pmol/l)
-1c. Change in glucose & insulin from baseline: MD (mean difference; mg/dl & pmol/l)
-1d. OGTT: 1 & 2hr glucose & insulin: MD (mean difference; mg/dl & pmol/l)
-1e. OGTT: Change in 1 & 2hr glucose & insulin from baseline: MD (mean difference; mg/dl & pmol/l)
+Computational procedure: I variable formulation, meta-analysis (MA), subgroup analysis (SGA) & meta-regression analysis (MRA), sensitivity analysis (SA) at four levels.
 
-Secondary: 
-2a. Male patients: OR (odds ratio)
-2b. Change in body weight (BW): MD (mean difference; Kg)
-2c. Change in BMI: MD (mean difference; Kg/m^2)
-2d. Excess body weight loss (EBWL): MD (mean difference; %)
-2e. Change in waist circumference (WC): MD (mean difference; cm)
-2f. HbA1c: MD (mean difference; %)
-2g. HOMA-IR (insulin resistance score) & change from baseline: MD (mean difference)
-2h. Average 10-day hypoglycemic (HG) events: MD (mean difference)
-2i. OGTT: Peak glycemia: MD (mean difference; mg/dl)
-2j. OGTT: Time to peak glycemia: MD (mean difference; mg/dl)
-2k. OGTT: Nadir glycemia: MD (mean difference; mg/dl)
-2l. OGTT: Peak - Nadir glycemia range: MD (mean difference; mg/dl)
-2m. Postoperative C-peptide levels & change from baseline: MD (mean difference; ng/ml)
-2n. 1hr / fasting glucose & insulin ratios (& changes from baseline): MD (mean difference)
-2o. 1hr / 2hr glucose & insulin ratios (& changes from baseline(: MD (mean difference)
+Included items: Individual study data, sensitivity analysis data, derived data & R code.
 
+Outcome: Expected value (EV) & 95% confidence interval (CI95%) of the mean difference (MD) of I when comparing robotic (RPN / RAPN) vs. open partial nephrectomy (OPN). RPN / RAPN is considered the experimental arm, while OPN the control arm.
 
-Included items: Individual study data (“.csv” files) & R code (“.txt” files).
+Meta-analysis: R code is included for the implementation of a random effects model with Hartung & Knapp modification; subgroups: studies published before & after 2018, studies with & without patient matching, single- / multicenter studies, stratification of studies according to ROBINS-I tool class (Low - Moderate - Serious).
 
-Meta-analysis (MA): R code is included for the implementation of a random effects model with the Hartung & Knapp modification for MD, and Mantel–Haenszel method for RR and OR; subgroups: studies published before & after 2018, studies with & without patient matching, studies with & without DM2 patients, stratification of studies according to ROBINS-I tool (Low - Moderate - Serious - Critical).
+Meta-regression analysis: R code is included for the implementation of a random effects model, using the restricted maximum likelihood (REML) estimation; subgroups: studies published before & after 2018, studies with & without patient matching, single- / multicenter studies, stratification according to ROBINS-I tool, moderators: year of publication, number of quality stars assigned according to the Newcastle - Ottawa Scale (NOS).
 
-Meta-regression analysis (MRA): R code is included for the implementation of a random effects model, using the restricted maximum likelihood (REML) estimation; moderators: year of publication, number of quality stars assigned according to the Newcastle - Ottawa Scale (NOS).
+Sensitivity analysis: Level 1: Re-analysis in a subset of studies with relatively increased accuracy of reported results. Level 2: Re-analysis in the subset of "ROBINS: Low" studies with patient matching. Level 3: Re-analysis in a subset of studies with total population above the average. 4: Observation of the change in the MD of I between robotic and open partial nephrectomy for the various values obtained by the correlation coefficient (r) between the original variables (IT & OT).
 
-Sensitivity analysis (SA): As SA we defined the exclusion of a single study during subgroup analysis (SGA).
-
-Instructions (for the replication of results): Create a desktop folder named “Data” and save the “.csv” files with original data, ensuring to specify the correct absolute/relative paths for your system. The code generates desktop folders with relevant names for storing derived data and plots.
+Instructions for the replication of results: Create a desktop folder named "Data" and save the “.csv” files provided. Make sure you provide the appropriate absolute / relative paths for your system. The code creates various desktop folders with appropriate names to save the derived data and plots.
